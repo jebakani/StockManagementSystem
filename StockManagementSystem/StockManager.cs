@@ -22,13 +22,7 @@ namespace StockManagementSystem
         //method to add new share 
         public void CreateNewStock()
         {
-<<<<<<< HEAD
             StockUtility stock = new StockUtility();
-=======
-            StockManager stockManager = new StockManager();
-            //create the new object for utility class 
-            StockUtility.Stock stock = new StockUtility.Stock();
->>>>>>> 4d47f92e7a2d19012cfa263b115c54c273f50965
             Console.WriteLine("Enter the name of Share:");
             stock.companyName = Console.ReadLine();
             Console.WriteLine("Enter the number:");
@@ -72,14 +66,8 @@ namespace StockManagementSystem
         //method to buy the share 
         public void BuyShare(int amount, string company)
         {
-
-            StockManager stockManager = new StockManager();
             //create the new object for utility class 
-<<<<<<< HEAD
             StockUtility  stock = new StockUtility ();
-=======
-            StockUtility.Stock stock = new StockUtility.Stock();
->>>>>>> 4d47f92e7a2d19012cfa263b115c54c273f50965
             int contains = 0;
             int price = 0;
             stocks1 = this.stockLinkedList.display();
@@ -114,15 +102,8 @@ namespace StockManagementSystem
         //method to sell the share 
         public void SellShare(int amount, string company)
         {
-
-            StockManager stockManager = new StockManager();
-<<<<<<< HEAD
             //create the new object for utility  class 
             StockUtility stock = new StockUtility();
-=======
-            //create the new object for utility class 
-            StockUtility.Stock stock = new StockUtility.Stock();
->>>>>>> 4d47f92e7a2d19012cfa263b115c54c273f50965
             int contains = 0;
             
             for (int i = 0; i < stocks1.Length; i++)
@@ -149,17 +130,6 @@ namespace StockManagementSystem
             {
                 Console.WriteLine("No share is Available"); ;
             }
-
-<<<<<<< HEAD
-=======
-        public void SaveStock(LinkedList<StockUtility.Stock> stocks )
-        {
-            string filePath = @"C:\Users\HP1\source\repos\StockManagementSystem\StockManagementSystem\Stock.json";
-             StockUtility stockUtility = new StockUtility();
-             stockUtility.stocksList = stocks;
-             
-             File.WriteAllText(filePath, JsonConvert.SerializeObject(stockUtility));
->>>>>>> 4d47f92e7a2d19012cfa263b115c54c273f50965
         }
 
         //calculate the total share value
