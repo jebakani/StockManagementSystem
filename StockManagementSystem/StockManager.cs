@@ -69,8 +69,6 @@ namespace StockManagementSystem
         //method to buy the share 
         public void BuyShare(int amount, string company)
         {
-
-            StockManager stockManager = new StockManager();
             //create the new object for utility class 
             StockUtility  stock = new StockUtility ();
             int contains = 0;
@@ -108,9 +106,7 @@ namespace StockManagementSystem
         //method to sell the share 
         public void SellShare(int amount, string company)
         {
-
             StockManager stockManager = new StockManager();
-            //create the new object for utility  class 
             StockUtility stock = new StockUtility();
             int contains = 0;
             stocks1 = this.stockLinkedList.display();
@@ -139,6 +135,7 @@ namespace StockManagementSystem
             {
                 Console.WriteLine("No share is Available"); ;
             }
+
             else
             {
                 stack.PushStack(company, "sold");
@@ -156,6 +153,7 @@ namespace StockManagementSystem
         public static int CalculateStockValue(int num,int price)
         {
             return (num * price);
+            
         }
     }
 }
