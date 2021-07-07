@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace StockManagementSystem
 {
+    /// <summary>
+    /// Stack data structure stores data in last in first out manner
+    /// </summary>
     public class StackNode
     {
         public string name { get; set; }
@@ -22,6 +25,7 @@ namespace StockManagementSystem
     {
  
         private StackNode head;
+        //push stack method insert the node at the begining of the list
         public void PushStack(string name,string type)
         {
             StackNode stack = new StackNode(name, type);
@@ -39,8 +43,10 @@ namespace StockManagementSystem
 
         }
 
+        //method that display the stack data 
         public void PopStack()
         {
+            Console.WriteLine("======Purchase Details======");
             StackNode temp = head;
             if(head==null)
             {
@@ -53,8 +59,8 @@ namespace StockManagementSystem
                     Console.WriteLine("{0} share is {1}",temp.name,temp.type);
                     temp = temp.Next;
                 }
-               // Console.WriteLine("{0} share is {1}", temp.name, temp.type);
             }
+            Console.WriteLine("==============================");
         }
     }
 }

@@ -12,6 +12,7 @@ namespace StockManagementSystem
     {
         StockLinkedList stockLinkedList;
         LinkedListStack stack;
+        LinkedQueue queue;
         int totalValue = 0;
         StockUtility[] stocks1;
         DateTime date;
@@ -19,10 +20,11 @@ namespace StockManagementSystem
         {
             this.stockLinkedList = new StockLinkedList();
             this.stack = new LinkedListStack();
+            this.queue = new LinkedQueue();
         }
         
         //method to add new share 
-        public void CreateNewStock()
+        public void CreateNewStock(StockManager stockManager)
         {
             StockUtility stock = new StockUtility();
             Console.WriteLine("Enter the name of Share:");
@@ -35,7 +37,7 @@ namespace StockManagementSystem
             stock.date = date.ToString("dd/MM/yyyy");
             stock.time = date.ToString("HH:mm:ss");
             stockLinkedList.AddLast(stock);
-            stack.PushStack(stock.companyName, "Brought");
+            stockManager.Track(stock.companyName, "Brought", stock.date, stock.time);
         }
 
         //method to print the report
@@ -67,7 +69,7 @@ namespace StockManagementSystem
         }
 
         //method to buy the share 
-        public void BuyShare(int amount, string company)
+        public void BuyShare(int amount, string company,StockManager stockManager )
         {
             //create the new object for utility class 
             StockUtility  stock = new StockUtility ();
@@ -99,14 +101,13 @@ namespace StockManagementSystem
                 stock.time = date.ToString("HH:mm:ss");
                 stockLinkedList.AddLast(stock);
             }
-            stack.PushStack(company, "Brought");
 
+            stockManager.Track(company, "Brought", stock.date, stock.time);
         }
 
         //method to sell the share 
-        public void SellShare(int amount, string company)
+        public void SellShare(int amount, string company, StockManager stockManager)
         {
-            StockManager stockManager = new StockManager();
             StockUtility stock = new StockUtility();
             int contains = 0;
             stocks1 = this.stockLinkedList.display();
@@ -130,22 +131,34 @@ namespace StockManagementSystem
                     break;
                 }
             }
-
             if (contains == 0)
             {
                 Console.WriteLine("No share is Available"); ;
             }
-
             else
             {
-                stack.PushStack(company, "sold");
+                stockManager.Track(company, "Sold", stock.date, stock.time);
             }
 
         }
 
+        //method to track the transaction that calls stack push and enqueue method
+        public  void Track(string name,string action,string date,string time)
+        {
+            stack.PushStack(name,action);
+            queue.EnqueueData(name, date, time);
+        }
+
+        //method that invoke pop() and display the purchase detail
         public void PuchaseDetail()
         {
             stack.PopStack();
+        }
+
+        //method that invoke queue and display the time and date of transaction
+        public void TransactionDetail()
+        {
+            queue.Dequeue();
         }
        
 

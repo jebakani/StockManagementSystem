@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace StockManagementSystem
 {
+    //linked list node that stores the stock object in nodes 
     public class Node
     {
         public StockUtility value { get; set; }
+        //next hold the adress of next node
         public Node Next { get; set; }
         public Node(StockUtility stock)
         {
@@ -18,8 +20,8 @@ namespace StockManagementSystem
     }
     public class StockLinkedList 
     {
+        //initial head=null
         private Node head;
-        //public StockLinkedList(IEnumerable<T> collection);
         public StockLinkedList()
         {
 
@@ -32,6 +34,7 @@ namespace StockManagementSystem
 
             }
         }
+        //addlast method stores the data at last position
         public void AddLast(StockUtility stock)
         {
             Node  newNode = new Node (stock);
@@ -51,6 +54,8 @@ namespace StockManagementSystem
             }
 
         }
+
+        //the method return the total count of the node stored
         public  int Count()
         {
             int count = 0;
@@ -65,22 +70,31 @@ namespace StockManagementSystem
             }
             return count;
         }
-    
+         
+        //method to display the data 
         public StockUtility[] display()
         {
             int count= Count() ;
             StockUtility[] result = new StockUtility[count] ;
             int index = 0;
             Node temp = head;
-            while (temp.Next != null)
+            if (head == null)
             {
-                result [index++] =temp.value;
-                temp = temp.Next;
+                return result;
             }
-            result[index] = temp.value;
-            return result;
+            else
+            {
+                while (temp.Next != null)
+                {
+                    result[index++] = temp.value;
+                    temp = temp.Next;
+                }
+                result[index] = temp.value;
+                return result;
+            }
         }
 
+        //methid to remove the node from the list
         public void RemoveData(StockUtility stock)
         {
             Node temp = head;
@@ -91,7 +105,7 @@ namespace StockManagementSystem
 
             }
 
-            while (temp != null && temp.value!=stock )
+            while (temp != null && temp.value != stock)
             {
                 prev = temp;
                 temp = temp.Next;
@@ -100,9 +114,7 @@ namespace StockManagementSystem
             if(temp.value==stock)
             {
                 prev.Next = temp.Next;
-            }
-
-            
+            }  
         }
 
     }
