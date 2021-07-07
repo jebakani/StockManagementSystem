@@ -16,7 +16,7 @@ namespace StockManagementSystem
         public void CreateNewStock(LinkedList<StockUtility.Stock> stockList)
         {
             StockManager stockManager = new StockManager();
-            //create the new object for rice class 
+            //create the new object for utility class 
             StockUtility.Stock stock = new StockUtility.Stock();
             Console.WriteLine("Enter the name of Share:");
             stock.companyName = Console.ReadLine();
@@ -53,7 +53,7 @@ namespace StockManagementSystem
         {
             
             StockManager stockManager = new StockManager();
-            //create the new object for rice class 
+            //create the new object for utility class 
             StockUtility.Stock stock = new StockUtility.Stock();
             int contains = 0;
             int price=0;
@@ -89,7 +89,7 @@ namespace StockManagementSystem
         {
 
             StockManager stockManager = new StockManager();
-            //create the new object for rice class 
+            //create the new object for utility class 
             StockUtility.Stock stock = new StockUtility.Stock();
             int contains = 0;
             int price = 0;
@@ -129,7 +129,7 @@ namespace StockManagementSystem
             string filePath = @"C:\Users\HP1\source\repos\StockManagementSystem\StockManagementSystem\Stock.json";
              StockUtility stockUtility = new StockUtility();
              stockUtility.stocksList = stocks;
-             //inventoryUtility.riceList = manager.AddToInventory(inventoryUtility.riceList);
+             
              File.WriteAllText(filePath, JsonConvert.SerializeObject(stockUtility));
         }
 
