@@ -136,6 +136,7 @@ namespace StockManagementSystem
         public static int CalculateStockValue(int num,int price)
         {
             return (num * price);
+            
         }
     }
 }
