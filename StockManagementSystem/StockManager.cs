@@ -11,24 +11,20 @@ namespace StockManagementSystem
     class StockManager
     {
         StockLinkedList stockLinkedList;
+        LinkedListStack stack;
         int totalValue = 0;
         StockUtility[] stocks1;
         DateTime date;
         public StockManager()
         {
             this.stockLinkedList = new StockLinkedList();
+            this.stack = new LinkedListStack();
         }
         
         //method to add new share 
         public void CreateNewStock()
         {
-<<<<<<< HEAD
             StockUtility stock = new StockUtility();
-=======
-            StockManager stockManager = new StockManager();
-            //create the new object for utility class 
-            StockUtility.Stock stock = new StockUtility.Stock();
->>>>>>> 4d47f92e7a2d19012cfa263b115c54c273f50965
             Console.WriteLine("Enter the name of Share:");
             stock.companyName = Console.ReadLine();
             Console.WriteLine("Enter the number:");
@@ -39,6 +35,7 @@ namespace StockManagementSystem
             stock.date = date.ToString("dd/MM/yyyy");
             stock.time = date.ToString("HH:mm:ss");
             stockLinkedList.AddLast(stock);
+            stack.PushStack(stock.companyName, "Brought");
         }
 
         //method to print the report
@@ -75,11 +72,7 @@ namespace StockManagementSystem
 
             StockManager stockManager = new StockManager();
             //create the new object for utility class 
-<<<<<<< HEAD
             StockUtility  stock = new StockUtility ();
-=======
-            StockUtility.Stock stock = new StockUtility.Stock();
->>>>>>> 4d47f92e7a2d19012cfa263b115c54c273f50965
             int contains = 0;
             int price = 0;
             stocks1 = this.stockLinkedList.display();
@@ -108,6 +101,7 @@ namespace StockManagementSystem
                 stock.time = date.ToString("HH:mm:ss");
                 stockLinkedList.AddLast(stock);
             }
+            stack.PushStack(company, "Brought");
 
         }
 
@@ -116,51 +110,47 @@ namespace StockManagementSystem
         {
 
             StockManager stockManager = new StockManager();
-<<<<<<< HEAD
             //create the new object for utility  class 
             StockUtility stock = new StockUtility();
-=======
-            //create the new object for utility class 
-            StockUtility.Stock stock = new StockUtility.Stock();
->>>>>>> 4d47f92e7a2d19012cfa263b115c54c273f50965
             int contains = 0;
-            
+            stocks1 = this.stockLinkedList.display();
             for (int i = 0; i < stocks1.Length; i++)
             {
-                if (stocks1[i].companyName.Equals(company) &&amount < stocks1[i].numberOfShare)
+                if (stocks1[i].companyName.Equals(company) && amount < stocks1[i].numberOfShare)
                 {
                     stocks1[i].numberOfShare -= amount;
-                    Console.WriteLine("{0} number of shares has been sold ",amount);
+                    Console.WriteLine("{0} number of shares has been sold ", amount);
                     stocks1[i].date = date.ToString("dd/MM/yyyy");
                     stocks1[i].time = date.ToString("HH:mm:ss");
                     contains = 1;
                     break;
                 }
-                else if(stocks1[i].companyName.Equals(company) && amount < stocks1[i].numberOfShare)
+                else if (stocks1[i].companyName.Equals(company) && amount < stocks1[i].numberOfShare)
                 {
                     contains = 1;
                     Console.WriteLine("since amount is less that available share enite share is sold ");
                     //if number of share is less than amount the remove the entire share
                     stockLinkedList.RemoveData(stocks1[i]);
+                    break;
                 }
             }
-          
-            if(contains==0)
+
+            if (contains == 0)
             {
                 Console.WriteLine("No share is Available"); ;
             }
+            else
+            {
+                stack.PushStack(company, "sold");
+            }
 
-<<<<<<< HEAD
-=======
-        public void SaveStock(LinkedList<StockUtility.Stock> stocks )
-        {
-            string filePath = @"C:\Users\HP1\source\repos\StockManagementSystem\StockManagementSystem\Stock.json";
-             StockUtility stockUtility = new StockUtility();
-             stockUtility.stocksList = stocks;
-             
-             File.WriteAllText(filePath, JsonConvert.SerializeObject(stockUtility));
->>>>>>> 4d47f92e7a2d19012cfa263b115c54c273f50965
         }
+
+        public void PuchaseDetail()
+        {
+            stack.PopStack();
+        }
+       
 
         //calculate the total share value
         public static int CalculateStockValue(int num,int price)
